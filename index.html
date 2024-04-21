@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>PDF to SVG client-side converter</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="icon" type="image/svg+xml" href="icon.svg">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:creator" content="@steren">
+  <meta name="twitter:title" content="PDF to SVG client-side converter">
+  <meta name="twitter:image" content="https://pdf-to-svg.client-side.app/title.png">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="PDF to SVG client-side converter">
+  <meta property="og:image" content="https://pdf-to-svg.client-side.app/title.png">
+
+  <script type="application/ld+json">
+  {
+	"@context": "http://schema.org",
+	"@type": "WebSite",
+	"author": "Steren Giannini",
+	"name": "PDF to SVG client-side converter",
+	"image": "https://pdf-to-svg.client-side.app/title.png"
+  }
+  </script>
+
+  <style>
+	html {
+	  max-width: 70ch;
+	  padding: 3em 1em;
+	  margin: auto;
+	  line-height: 1.75;
+	  font-size: 1.25em;
+	  font-family: sans-serif;
+	}
+
+	h1,h2,h3,h4,h5,h6 {
+	  margin: 3em 0 1em;
+	}
+
+	p,ul,ol {
+	  margin-bottom: 2em;
+	}
+
+	img, stereo-img {
+	  width: 100%;
+	}
+
+	.icon {
+	  float: left;
+	  margin-right: 1em;
+	  width: 3em;
+	  height: 3em;
+	}
+
+	pre {
+	  overflow-x:auto;
+	  font-size:0.8em;
+	}
+
+  </style>
+</head>
+
+<body id='dropbox'>
+
+  <header>
+	<!-- <img src="icon.svg" alt="icon" class="icon"> -->
+	<h1>PDF to SVG</h1>
+	<p>
+	  A client-side webapp to transform PDF files to SVG. Install it for more features and offline use.<br>
+	  No server is used. PDF files are not uploaded.<br>
+  </p>
+  </header>
+
+  <main>
+	<p>
+	  <label for="input">Drag and drop or select a PDF file:</label>
+	  <input type="file" id="input" accept="application/pdf">
+	</p>
+
+	<div id="render">
+	</div>
+  </main>
+
+  <footer>
+	<p>Built by <a href="https://steren.fr">Steren</a> using <a href="https://github.com/ArtifexSoftware/mupdf.js">mupdf.js</a>, see <a href="https://github.com/client-side-apps/pdf-to-svg">source code</a>.</p>
+  </footer>
+
+  <script type="module">
+	import * as mupdf from "./node_modules/mupdf/dist/mupdf.js"
+
+	function renderPage(pdf, i) {
+		console.log(`Rendering page ${i}`);
+		let z = window.devicePixelRatio * 96 / 72;
+		let png = pdf.loadPage(i).toPixmap([z,0,0,z,0,0], mupdf.ColorSpace.DeviceRGB).asPNG();
+		let img = new Image();
+		img.src = URL.createObjectURL(new Blob([png], { type: "image/png" }));
+		img.onload = function () {
+			//img.style.width = img.width / window.devicePixelRatio + "px";
+			document.getElementById("render").appendChild(img);
+		}
+	}
+
+	async function handlePdf(file) {
+		let pdf = mupdf.Document.openDocument(await file.arrayBuffer(), file.name);
+
+
+		let n = pdf.countPages()
+		console.log(`Received PDF with ${n} pages`);
+		for (let i = 0; i < n; ++i) {
+			setTimeout(() => renderPage(pdf, i), 0)
+		}
+	}
+
+
+
+	// for each file, check if pdf and call handlePdf
+	async function handleFiles(files) {
+		const file = files[0];
+		if (!file.type === 'application/pdf') { return; }
+		handlePdf(file);
+	}
+
+	document.getElementById("input").addEventListener("change", (e) => {
+	  handleFiles(e.target.files);
+	}, false);
+
+	// Drag and drop
+	const dropzone = document.getElementById("dropbox");
+	dropzone.ondragover = dropzone.ondragenter = (e) => {
+	  e.stopPropagation();
+	  e.preventDefault();
+	}
+	dropzone.ondrop = (e) => {
+	  e.stopPropagation();
+	  e.preventDefault();
+	  handleFiles(e.dataTransfer.files);
+	}
+  </script>
+
+</body>
+
+</html>
