@@ -91,15 +91,25 @@
 	import * as mupdf from "./node_modules/mupdf/dist/mupdf.js"
 
 	function renderPage(pdf, i) {
-		console.log(`Rendering page ${i}`);
-		let z = window.devicePixelRatio * 96 / 72;
-		let png = pdf.loadPage(i).toPixmap([z,0,0,z,0,0], mupdf.ColorSpace.DeviceRGB).asPNG();
-		let img = new Image();
-		img.src = URL.createObjectURL(new Blob([png], { type: "image/png" }));
+
+		const page = pdf.loadPage(i)
+
+		const buf = new mupdf.Buffer()
+		const wri = new mupdf.DocumentWriter(buf, "svg", "")
+		const dev = wri.beginPage(page.getBounds())
+		page.run(dev, [1, 0, 0, 1, 0, 0])
+		wri.endPage()
+		wri.close()
+
+		const svgString = buf.asString();
+
+		const svg = new Blob([svgString], { type: "image/svg+xml" });
+		const img = new Image();
+		img.src = URL.createObjectURL(svg);
 		img.onload = function () {
-			//img.style.width = img.width / window.devicePixelRatio + "px";
 			document.getElementById("render").appendChild(img);
 		}
+
 	}
 
 	async function handlePdf(file) {
