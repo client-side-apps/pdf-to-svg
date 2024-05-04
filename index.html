@@ -93,7 +93,6 @@
 	import * as mupdf from "./node_modules/mupdf/dist/mupdf.js"
 
 	function renderPage(pdf, i) {
-
 		const page = pdf.loadPage(i)
 
 		const buf = new mupdf.Buffer()
@@ -104,25 +103,46 @@
 		wri.close()
 
 		const svgString = buf.asString();
+		addSVGtoDocument(svgString);
+	}
 
+	function addSVGtoDocument(svgString) {
 		const svg = new Blob([svgString], { type: "image/svg+xml" });
 		const img = new Image();
 		img.src = URL.createObjectURL(svg);
 		img.onload = function () {
 			document.getElementById("render").appendChild(img);
 		}
+	}
+
+	function addDownloadButtonToDocument() {
+		const button = document.createElement("button");
+		button.innerText = "Download";
+		button.addEventListener("click", () => {
+			const render = document.getElementById("render");
+			const images = render.querySelectorAll("img");
+
+			for (let i = 0; i < images.length; i++) {
+				const a = document.createElement("a");
+				a.href = images[i].src;
+				a.download = `${i}.svg`;
+				a.click();
+			}
+		});
+
+		document.getElementById("render").prepend(button);
 
 	}
 
 	async function handlePdf(file) {
 		let pdf = mupdf.Document.openDocument(await file.arrayBuffer(), file.name);
 
-
 		let n = pdf.countPages()
 		console.log(`Received PDF with ${n} pages`);
 		for (let i = 0; i < n; ++i) {
 			setTimeout(() => renderPage(pdf, i), 0)
 		}
+		addDownloadButtonToDocument();
 	}
 
 
