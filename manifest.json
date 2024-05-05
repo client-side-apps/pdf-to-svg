@@ -30,7 +30,7 @@
     "start_url": "/",
     "display": "standalone",
     "scope": "/",
-    "theme_color": "#00ff8f",
+    "theme_color": "#c00",
     "background_color": "#000000",
     "share_target": {
       "action": "/",
