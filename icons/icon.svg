@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" xmlns:bx="https://boxy-svg.com">
+  <path fill="#fff" d="M 54.743 20.615 L 377.139 20.615 L 457.257 100.733 L 457.257 491.385 L 54.743 491.385 L 54.743 20.615 Z" style="stroke: rgb(0, 0, 0); stroke-width: 20px;">
+    <title>Paper</title>
+  </path>
+  <path d="M 277.916 195.28 L 358.027 275.391 L 277.916 275.391 L 277.916 195.28 Z" style="stroke: rgb(0, 0, 0); stroke-width: 20px; stroke-linejoin: bevel; fill: rgb(255, 255, 255);" transform="matrix(1, 0.000077, -0.000078, 1, 99.245209, -174.686401)" bx:shape="triangle 277.916 195.28 80.111 80.111 0 0 1@12d69134">
+    <title>Corner</title>
+  </path>
+  <g transform="matrix(1, 0, 0, 1, -88.098999, -116.703583)">
+    <rect y="175.411" width="356.02" height="159.999" style="fill: rgb(204, 0, 0);" x="88.099"/>
+    <text style="fill: rgb(255, 255, 255); font-family: Arial, sans-serif; font-size: 236.081px; font-weight: 700; line-height: 352.548px; text-anchor: middle; white-space: pre;" transform="matrix(0.678678, 0, 0, 0.678675, 266.109009, 310.861389)"><title>PDF</title>PDF</text>
+  </g>
+  <path d="M -256 -281.486 L -226.572 -230.514 L -285.429 -230.514 L -256 -281.486 Z" style="" transform="matrix(-1, 0, 0, -1, 0, 0)" bx:shape="triangle -285.429 -281.486 58.857 50.972 0.5 0 1@52d7103e">
+    <title>Arrow</title>
+  </path>
+  <g transform="matrix(1, 0, 0, 1, 88.098022, 122.053574)">
+    <rect y="175.411" width="371.615" height="159.999" style="fill: rgb(211, 135, 14);" x="52.287"/>
+    <text style="fill: rgb(255, 255, 255); font-family: Arial, sans-serif; font-size: 236.081px; font-weight: 700; line-height: 352.548px; text-anchor: middle; white-space: pre;" transform="matrix(0.678678, 0, 0, 0.678675, 238.094513, 310.861389)"><title>SVG</title>SVG</text>
+  </g>
+</svg>

@@ -4,16 +4,16 @@
   <title>PDF to SVG client-side converter</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <link rel="icon" type="image/svg+xml" href="icon.svg">
+  <link rel="icon" type="image/svg+xml" href="icons/icon.svg">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:creator" content="@steren">
   <meta name="twitter:title" content="PDF to SVG client-side converter">
-  <meta name="twitter:image" content="https://pdf-to-svg.client-side.app/title.png">
+  <meta name="twitter:image" content="https://pdf-to-svg.client-side.app/icons/title.png">
 
   <meta property="og:type" content="article">
   <meta property="og:title" content="PDF to SVG client-side converter">
-  <meta property="og:image" content="https://pdf-to-svg.client-side.app/title.png">
+  <meta property="og:image" content="https://pdf-to-svg.client-side.app/icons/title.png">
 
   <script type="application/ld+json">
   {
@@ -21,7 +21,7 @@
 	"@type": "WebSite",
 	"author": "Steren Giannini",
 	"name": "PDF to SVG client-side converter",
-	"image": "https://pdf-to-svg.client-side.app/title.png"
+	"image": "https://pdf-to-svg.client-side.app/icons/title.png"
   }
   </script>
 
@@ -69,14 +69,12 @@
 <body id='dropbox'>
 
   <header>
-	<!-- <img src="icon.svg" alt="icon" class="icon"> -->
+	<img src="icons/icon.svg" alt="icon" class="icon">
 	<h1>PDF to SVG</h1>
 	<p>
-	  A client-side webapp to transform PDF files to SVG.<br> 
-	  <!-- Install it for more features and offline use.<br> -->
-
-	  PDF files are <b>not</b> uploaded to any server, they are converted in your browser.
-  </p>
+		A client-side webapp to transform PDF files to SVG.<br> 
+		PDF files are <b>not</b> uploaded to any server, they are converted in your browser.
+  	</p>
   </header>
 
   <main>
@@ -90,7 +88,11 @@
   </main>
 
   <footer>
-	<p>Built by <a target="_blank" href="https://steren.fr">Steren</a> using <a target="_blank" href="https://github.com/ArtifexSoftware/mupdf.js">mupdf.js</a> (<a href="https://github.com/client-side-apps/pdf-to-svg">source code</a>).</p>
+	<p>
+		Pro tip: Install the app for offline use and file handling.<br>
+		Built by <a target="_blank" href="https://steren.fr">Steren</a> using <a target="_blank" href="https://github.com/ArtifexSoftware/mupdf.js">mupdf.js</a> (<a href="https://github.com/client-side-apps/pdf-to-svg">source code</a>).
+	</p>
+
   </footer>
 
   <script type="module">
@@ -173,6 +175,19 @@
 	  e.preventDefault();
 	  handleFiles(e.dataTransfer.files);
 	}
+
+	// File Handling API, see https://web.dev/file-handling/
+	if ('launchQueue' in window && 'files' in LaunchParams.prototype) {
+		launchQueue.setConsumer(async (launchParams) => {
+		// Nothing to do when the queue is empty.
+		if (!launchParams.files.length) { return; }
+		console.log("File(s) to Handle (File Handling API)");
+
+		// Resolve FileSystemFileHandle array to File array
+		const files = await Promise.all(launchParams.files.map( (fileHandle) => {return fileHandle.getFile();} ));
+		handleFiles(files);
+      });
+    }
   </script>
 
 </body>

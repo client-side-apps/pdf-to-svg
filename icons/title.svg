@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg width="1000" height="500" xmlns="http://www.w3.org/2000/svg" xmlns:bx="https://boxy-svg.com">
+  <defs/>
+  <path fill="#fff" d="M0 0h1000v500H0z"/>
+  <path fill="#fff" d="M 102.837 49.62 L 378.986 49.62 L 447.611 118.246 L 447.611 452.86 L 102.837 452.86 L 102.837 49.62 Z" style="stroke: rgb(0, 0, 0); stroke-width: 20px;">
+    <title>Paper</title>
+  </path>
+  <path d="M 238.05 167.268 L 306.669 235.887 L 238.05 235.887 L 238.05 167.268 Z" style="stroke: rgb(0, 0, 0); stroke-width: 20px; stroke-linejoin: bevel; fill: rgb(255, 255, 255);" transform="matrix(1, 0.000077, -0.000078, 1, 140.954924, -117.665587)" bx:shape="triangle 238.05 167.268 68.619 68.619 0 0 1@dc205296">
+    <title>Corner</title>
+  </path>
+  <g transform="matrix(0.856552, 0, 0, 0.856552, -19.515197, -68.000617)" style="">
+    <rect y="175.411" width="356.02" height="159.999" style="fill: rgb(204, 0, 0);" x="88.099"/>
+    <text style="fill: rgb(255, 255, 255); font-family: Arial, sans-serif; font-size: 236.081px; font-weight: 700; line-height: 352.548px; text-anchor: middle; white-space: pre;" transform="matrix(0.678678, 0, 0, 0.678675, 266.109009, 310.861389)"><title>PDF</title>PDF</text>
+  </g>
+  <path d="M -275.224 -273.07 L -250.017 -229.41 L -300.431 -229.41 L -275.224 -273.07 Z" style="" transform="matrix(-1, 0, 0, -1, 0, 0)" bx:shape="triangle -300.431 -273.07 50.414 43.66 0.5 0 1@b8f5ba2c">
+    <title>Arrow</title>
+  </path>
+  <g transform="matrix(0.856552, 0, 0, 0.856552, 131.406752, 136.5081)" style="">
+    <rect y="175.411" width="371.615" height="159.999" style="fill: rgb(211, 135, 14);" x="52.287"/>
+    <text style="fill: rgb(255, 255, 255); font-family: Arial, sans-serif; font-size: 236.081px; font-weight: 700; line-height: 352.548px; text-anchor: middle; white-space: pre;" transform="matrix(0.678678, 0, 0, 0.678675, 238.094513, 310.861389)"><title>SVG</title>SVG</text>
+  </g>
+  <text style="font-family: Arial, sans-serif; font-size: 45px; font-weight: 700; white-space: pre;" transform="matrix(0.89706, 0, 0, 0.89706, 79.390792, 104.694106)"><tspan x="520.881" y="136.311" style="font-size: 80px;">PDF to SVG</tspan><tspan x="520.881" dy="1em">​</tspan><tspan x="520.881" dy="1em">​</tspan><tspan>Client-side converter</tspan></text>
+</svg>

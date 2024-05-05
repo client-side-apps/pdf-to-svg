@@ -1,0 +1,62 @@
+{
+    "short_name": "PDF->SVG",
+    "id": "pdf-to-svg",
+    "name": "PDF to SVG",
+    "description": "A client-side webapp to transform PDF files to SVG",
+    "icons": [
+      {
+        "src": "icons/icon.svg",
+        "sizes": "any",
+        "type": "image/svg+xml"
+      },
+      {
+        "src": "icons/icon.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ],
+    "screenshots": [
+      {
+        "sizes": "1080x2340",
+        "src": "/screenshots/screenshot-empty.png",
+        "type": "image/png"
+      },
+      {
+        "sizes": "1080x2340",
+        "src": "/screenshots/screenshot-demo.png",
+        "type": "image/png"
+      }
+    ],
+    "start_url": "/",
+    "display": "standalone",
+    "scope": "/",
+    "theme_color": "#00ff8f",
+    "background_color": "#000000",
+    "share_target": {
+      "action": "/",
+      "method": "POST",
+      "enctype": "multipart/form-data",
+      "params": {
+        "files": [
+          {
+            "name": "files",
+            "accept": ["application/pdf"]
+          }
+        ]
+      }
+    },
+    "file_handlers": [{
+      "action": "/",
+      "accept": {
+        "application/pdf": ".pdf"
+      },
+      "icons": [
+        {
+          "src": "icons/icon.png",
+          "sizes": "512x512",
+          "type": "image/png"
+        }
+      ],
+      "launch_type": "single-client"
+    }]
+  }
