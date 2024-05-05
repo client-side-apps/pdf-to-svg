@@ -17,13 +17,13 @@
     ],
     "screenshots": [
       {
-        "sizes": "1080x2340",
-        "src": "/screenshots/screenshot-empty.png",
+        "sizes": "1080x1745",
+        "src": "/screenshots/screenshot-mobile.png",
         "type": "image/png"
       },
       {
-        "sizes": "1080x2340",
-        "src": "/screenshots/screenshot-demo.png",
+        "sizes": "1449x981",
+        "src": "/screenshots/screenshot-desktop.png",
         "type": "image/png"
       }
     ],
